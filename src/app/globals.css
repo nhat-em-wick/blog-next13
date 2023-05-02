@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.blog-container {
+  @apply max-w-screen-xl px-3 md:px-5 mx-auto;
+}
+
+.blog-card {
+  @apply shadow-lg rounded-xl bg-white dark:bg-dark-theme-content;
+}
+
+.blog-tag {
+  @apply w-max py-1.5 px-3 text-sm text-gray-700 dark:text-gray-300 bg-[#eff1f4] hover:bg-gray-200 dark:bg-[#313438] dark:hover:bg-gray-600 rounded-[20px] block transition-all duration-300 ease-in-out;
+}
+
+.blog-social-icon {
+  @apply flex items-center justify-center w-10 h-10 text-xl bg-[#eff1f4] hover:bg-gray-200 dark:bg-[#313438] dark:hover:bg-gray-600 rounded-full block transition-all duration-300 ease-in-out;
+}
+
+.blog-underline {
+  @apply underline decoration-transparent hover:decoration-primary transition-all duration-300 ease-in-out;
+}
