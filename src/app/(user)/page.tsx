@@ -1,8 +1,10 @@
 import PostItem from '@/components/PostItem/PostItem'
 import PostSlide from '@/components/PostSlide/PostSlide'
 import Sidebar from '@/components/Sidebar/Sidebar'
+import { getPosts } from '@/lib/post'
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts()
   return (
     <div className='mt-14'>
       <PostSlide />
