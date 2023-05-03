@@ -1,5 +1,5 @@
 import Header from '@/components/Header/Header'
-import './globals.css'
+import '../globals.css'
 import { Roboto } from 'next/font/google'
 import ThemeProvider from './themeProvider'
 import 'swiper/css'
@@ -17,13 +17,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={`${roboto.className} select-none`}>
-        <ThemeProvider>
-          <div className='dark:bg-dark-theme-bg bg-light-theme-bg pt-8'>
+        <div className='dark:bg-dark-theme-bg bg-light-theme-bg pt-8'>
+          <ThemeProvider>
             <Header />
             <main>{children}</main>
             <Footer />
-          </div>
-        </ThemeProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   )
