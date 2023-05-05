@@ -60,7 +60,10 @@ export default defineType({
       ]
     },
     {
-      type: 'image'
+      type: 'image',
+      fields: [
+        { name: 'alt', title: 'Alt', type: 'string' }
+      ]
     },
     {
       type: 'code'

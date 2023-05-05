@@ -1,7 +1,15 @@
 import { Base } from "./base.type"
 
 export interface Tag extends Base {
-  description: string
   title: string
+  description?: string
+  slug: string
   thumbnail: string
+  keywords: string[]
+  url: string
+  json_ld?: {
+    _type: 'code',
+    language: 'json',
+    code?: object
+  }
 }

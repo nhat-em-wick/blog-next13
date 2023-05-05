@@ -5,7 +5,7 @@ import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 
 export default function Sidebar() {
   return (
-    <div className='blog-card p-8'>
+    <div className='blog-card p-8 h-max sticky top-[100px]'>
       <section>
         <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Featured posts</span>
         <ul>
@@ -79,15 +79,19 @@ export default function Sidebar() {
         </ul>
       </section>
       <section className='mt-8'>
-        <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Follow us</span>
+        <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Theo dõi tôi</span>
         <ul className='flex items-center gap-x-2'>
           <li>
-            <Link href='#' className='blog-social-icon text-facebook'>
+            <Link
+              target='_blank'
+              href='https://www.facebook.com/wick.nhat20'
+              className='blog-social-icon text-facebook'
+            >
               <FaFacebookF />
             </Link>
           </li>
           <li>
-            <Link href='#' className='blog-social-icon'>
+            <Link target='_blank' href='https://github.com/nhat-em-wick' className='blog-social-icon'>
               <FaGithub />
             </Link>
           </li>

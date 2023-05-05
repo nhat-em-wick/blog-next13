@@ -19,7 +19,8 @@ export default defineType({
     defineField({
       name: 'keywords',
       title: 'Keywords',
-      type: 'string'
+      type: 'array',
+      of: [{ type: 'string', name: 'keyword' }]
     }),
     defineField({
       name: 'slug',
@@ -30,6 +31,11 @@ export default defineType({
         source: 'title',
         maxLength: 96
       },
+    }),
+    defineField({
+      name: 'url',
+      title: 'URL',
+      type: 'string'
     }),
     defineField({
       name: 'json_ld',
