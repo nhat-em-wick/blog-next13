@@ -6,11 +6,13 @@ import { getPosts } from '@/lib/post'
 export default async function Home() {
   const posts = await getPosts()
   return (
-    <div className='mt-14'>
-      <PostSlide />
+    <div className=''>
+      <PostSlide posts={posts.slice(0, 4)} />
       <div className='blog-container flex flex-col lg:flex-row gap-12 mt-8'>
-        <div className='blog-list w-full lg:w-[65%]'>
-          <PostItem />
+        <div className='blog-list w-full lg:w-[65%] flex flex-col gap-y-10'>
+          {posts?.map((post) => (
+            <PostItem key={post._id} post={post} />
+          ))}
           <div className='flex justify-center mt-10'>
             <button
               disabled

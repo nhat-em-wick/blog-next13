@@ -5,14 +5,15 @@ import { Tag } from "./tag.type"
 
 export interface Post extends Base {
   title: string
-  description: string
+  description?: string
   slug: string,
+  url?: string,
   thumbnail: string
-  keyword: string
+  keywords?: string[]
   content: PortableTextBlock[]
-  author: Author
-  tags: Tag[]
-  json_ld: {
+  author?: Author
+  tags?: Tag[]
+  json_ld?: {
     _type: 'code',
     language: 'json',
     code?: object

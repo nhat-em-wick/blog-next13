@@ -28,7 +28,8 @@ module.exports = {
         error: '#FF4842',
         facebook: '#1877f2',
         instagram: '#eff1f4',
-        linkedin: '#0077b5'
+        linkedin: '#0077b5',
+        twitter: '#1DA1F2'
       }
     }
   },
