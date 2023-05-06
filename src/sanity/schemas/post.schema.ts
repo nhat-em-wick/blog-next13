@@ -49,10 +49,10 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: { type: 'author' }
+      name: 'authors',
+      title: 'Authors',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'author' } }]
     }),
     defineField({
       name: 'thumbnail',
@@ -74,6 +74,12 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'blockContent'
-    })
+    }),
+    defineField({
+      name: 'timeRead',
+      title: 'Time Read',
+      type: 'number',
+      validation: Rule => Rule.required()
+    }),
   ]
 })

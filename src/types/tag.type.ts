@@ -1,3 +1,4 @@
+import { Author } from "./author.type"
 import { Base } from "./base.type"
 
 export interface Tag extends Base {
@@ -11,5 +12,6 @@ export interface Tag extends Base {
     _type: 'code',
     language: 'json',
     code?: object
-  }
+  },
+  authors?: Author[]
 }

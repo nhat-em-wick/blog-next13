@@ -11,11 +11,12 @@ export interface Post extends Base {
   thumbnail: string
   keywords?: string[]
   content: PortableTextBlock[]
-  author?: Author
+  authors?: Author[]
   tags?: Tag[]
   json_ld?: {
     _type: 'code',
     language: 'json',
     code?: object
-  }
+  },
+  timeRead: number
 }

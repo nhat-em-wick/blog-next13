@@ -3,17 +3,16 @@ import { client } from "../sanity.client";
 import { Post } from "@/types";
 
 export async function getPosts(): Promise<Post[]> {
-  return client.fetch(
-    groq`
-    *[_type == "post"] | order(_createdAt desc) {
-      ...,
-      "slug": slug.current,
-      author->,
-      tags[]->{_id, title, "slug": slug.current},
-      "thumbnail": thumbnail.asset->url
-      }
-    `
-  )
+  const query = groq`
+  *[_type == "post"] | order(_createdAt desc) {
+    ...,
+    "slug": slug.current,
+    author->,
+    tags[]->{_id, title, "slug": slug.current},
+    "thumbnail": thumbnail.asset->url
+    }
+  `
+  return client.fetch(query)
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {

@@ -1,10 +1,25 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { PostSidebarItem } from '../Sidebar/Sidebar'
+import { Post, Tag } from '@/types'
+import { getTags } from '@/lib/tag'
+import { getPosts } from '@/lib/post'
 
 export default function Footer() {
+  const [tags, setTags] = useState<Tag[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
+
+  const fetchTagsAndPosts = async () => {
+    const [tags, posts] = await Promise.all([getTags(), getPosts()])
+    setPosts(posts.slice(0, 3))
+    setTags(tags)
+  }
+  useEffect(() => {
+    fetchTagsAndPosts()
+  }, [])
+
   return (
     <footer className='bg-white dark:bg-dark-theme-content pt-28 pb-12 mt-14'>
       <div className='blog-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
@@ -150,64 +165,25 @@ export default function Footer() {
           </div>
         </section>
         <section className=''>
-          <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Latest posts</span>
+          <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Bài viết mới nhất</span>
           <ul>
-            <li className='mb-4'>
-              <PostSidebarItem />
-            </li>
-            <li className='mb-4'>
-              <PostSidebarItem />
-            </li>
+            {posts?.map((post) => (
+              <li key={post._id} className='mb-4'>
+                <PostSidebarItem post={post} />
+              </li>
+            ))}
           </ul>
         </section>
         <section className=''>
           <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Tags</span>
           <ul className='flex flex-wrap gap-x-2 gap-y-3'>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Travel
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Wibu
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Constructor
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Travel
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Wibu
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Constructor
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Travel
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Wibu
-              </Link>
-            </li>
-            <li className=''>
-              <Link href='#' className='blog-tag'>
-                Constructor
-              </Link>
-            </li>
+            {tags?.map((tag) => (
+              <li className='' key={tag._id}>
+                <Link href={`/tags/${tag.slug}`} className='blog-tag'>
+                  {tag.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

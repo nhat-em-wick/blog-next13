@@ -1,8 +1,11 @@
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb'
 import PostItem from '@/components/PostItem'
 import Sidebar from '@/components/Sidebar'
 import { getPostsByTag } from '@/lib/post'
+import { client } from '@/lib/sanity.client'
 import { getTagBySlug } from '@/lib/tag'
 import { Metadata } from 'next'
+import { groq } from 'next-sanity'
 import Image from 'next/image'
 
 interface DetailTagProps {
@@ -20,17 +23,20 @@ export async function generateMetadata({ params: { slug } }: DetailTagProps): Pr
     alternates: {
       canonical: tag?.url || `${process.env.HOST}/tags/${tag.slug}`
     },
+    authors: tag?.authors?.map((author) => ({ name: author.name })),
     category: tag.title,
     openGraph: {
       title: tag.title,
       description: tag.description,
+      authors: tag?.authors?.map((author) => author.name),
       images: {
         url: tag.thumbnail,
         width: 800,
         height: 600
       },
       type: 'article',
-      url: tag?.url || `${process.env.HOST}/tags/${tag.slug}`
+      url: tag?.url || `${process.env.HOST}/tags/${tag.slug}`,
+      publishedTime: tag._createdAt
     },
     robots: {
       index: true,
@@ -44,11 +50,21 @@ export async function generateMetadata({ params: { slug } }: DetailTagProps): Pr
 }
 
 export default async function DetailTag({ params: { slug } }: DetailTagProps) {
-  const tag = await getTagBySlug(slug)
-  const posts = await getPostsByTag(slug)
-
+  const [tag, posts] = await Promise.all([getTagBySlug(slug), getPostsByTag(slug)])
+  const breadcrumb = [
+    { path: '/', label: 'Trang chủ' },
+    {
+      path: `/tags`,
+      label: 'Tags'
+    },
+    {
+      path: `/tags/${tag.slug}`,
+      label: tag.title
+    }
+  ]
   return (
     <>
+      <Breadcrumb items={breadcrumb} />
       <div className=''>
         <div className='blog-container'>
           <div className='blog-card p-5 relative'>
@@ -110,4 +126,23 @@ export default async function DetailTag({ params: { slug } }: DetailTagProps) {
       </div>
     </>
   )
+}
+
+interface Slug {
+  slug: string
+}
+
+export const revalidate = 60
+
+export async function generateStaticParams() {
+  const query = groq`
+      *[_type == 'tag']
+      {
+        "slug": slug.current
+      }
+  `
+  const slugs: Slug[] = await client.fetch(query)
+  return slugs.map((slug) => ({
+    slug: slug.slug
+  }))
 }
