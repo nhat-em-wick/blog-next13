@@ -55,6 +55,12 @@ export default defineType({
       options: {
         hotspot: true
       },
-    })
+    }),
+    defineField({
+      name: 'authors',
+      title: 'Authors',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'author' } }]
+    }),
   ]
 })

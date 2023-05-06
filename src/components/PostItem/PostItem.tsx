@@ -40,11 +40,18 @@ export default function PostItem({ post }: PostItemProps) {
         <p className='mt-3 text-md text-gray-700 line-clamp-3 leading-relaxed dark:text-gray-300'>{post.description}</p>
         <div className='mt-4 flex items-center gap-5 text-gray-400 dark:text-gray-500'>
           <span className='flex items-center'>
-            <BiCalendar /> <span className='ml-1 text-sm'>May 2, 2022</span>
+            <BiCalendar />{' '}
+            <span className='ml-1 text-sm'>
+              {new Date(post._createdAt).toLocaleDateString('vi-VN', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+              })}
+            </span>
           </span>
           <span className='flex items-center'>
             <CiClock2 />
-            <span className='ml-1 text-sm dark'>6 phut doc</span>
+            <span className='ml-1 text-sm dark'>{post.timeRead} phút đọc</span>
           </span>
         </div>
       </div>
