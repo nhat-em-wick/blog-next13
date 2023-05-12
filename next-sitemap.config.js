@@ -12,6 +12,5 @@ module.exports = {
         disallow: '/studio'
       }
     ]
-  },
-  outDir: './out'
+  }
 }

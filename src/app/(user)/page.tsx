@@ -44,6 +44,7 @@ export default async function Home() {
           </div>
         </div>
         <div className='blog-sidebar flex-1'>
+          {/* @ts-expect-error Server Component */}
           <Sidebar />
         </div>
       </div>

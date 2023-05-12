@@ -1,25 +1,13 @@
-'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CiClock2 } from 'react-icons/ci'
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { getPosts } from '@/lib/post'
 import { getTags } from '@/lib/tag'
-import { useEffect, useState } from 'react'
-import { Post, Tag } from '@/types'
+import { Post } from '@/types'
 
-export default function Sidebar() {
-  const [tags, setTags] = useState<Tag[]>([])
-  const [posts, setPosts] = useState<Post[]>([])
-
-  const fetchTagsAndPosts = async () => {
-    const [tags, posts] = await Promise.all([getTags(), getPosts()])
-    setPosts(posts.slice(0, 3))
-    setTags(tags)
-  }
-  useEffect(() => {
-    fetchTagsAndPosts()
-  }, [])
+export default async function Sidebar() {
+  const [tags, posts] = await Promise.all([getTags(), getPosts()])
 
   return (
     <div className='blog-card p-8 h-max sticky top-[100px]'>
@@ -42,7 +30,7 @@ export default function Sidebar() {
       <section className='mt-8'>
         <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Bài viết mới nhất</span>
         <ul>
-          {posts?.map((post) => (
+          {posts?.slice(0, 3)?.map((post) => (
             <li key={post._id} className='mb-4'>
               <PostSidebarItem post={post} />
             </li>

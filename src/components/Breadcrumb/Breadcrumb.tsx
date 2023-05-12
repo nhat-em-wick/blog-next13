@@ -20,18 +20,17 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
             return (
               <>
                 {!isLastItem ? (
-                  <>
+                  <React.Fragment key={index}>
                     <Link
                       href={item.path}
-                      key={index}
                       className='text-gray-800 dark:text-gray-200 hover:text-primary transition-all duration-300 ease-in-out'
                     >
                       {item.label}
                     </Link>
                     <span className='mx-3'>/</span>
-                  </>
+                  </React.Fragment>
                 ) : (
-                  <span>{item.label}</span>
+                  <span key={index}>{item.label}</span>
                 )}
               </>
             )

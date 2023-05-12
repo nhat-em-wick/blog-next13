@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { BsSun, BsMoon, BsSearch } from 'react-icons/bs'
 import { HiOutlineSearch } from 'react-icons/hi'
-import { UseThemeProps } from 'next-themes/dist/types'
 
 const menuHeader = [
   { title: 'Trang chủ', path: '/' },
