@@ -1,1 +1,1 @@
-export { default } from './RichTextDocument'
+export * from './RichTextDocument'

@@ -1,7 +1,7 @@
 import { client } from '@/lib/sanity.client'
 import { PortableText } from '@portabletext/react'
 import { groq } from 'next-sanity'
-import RichTextDocument from '@/components/RichTextDocument'
+import { RichTextDocument, parseOutline, TableOfContents } from '@/components/RichTextDocument'
 import { getPostBySlug } from '@/lib/post'
 import { Post } from '@/types'
 import Image from 'next/image'
@@ -46,6 +46,17 @@ export async function generateMetadata({ params: { slug } }: PostProps): Promise
       publishedTime: post._createdAt,
       authors: post?.authors?.map((author) => author.name)
     },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description: post.description,
+      images: [post.thumbnail]
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 1
+    },
     robots: {
       index: true,
       follow: true,
@@ -60,10 +71,10 @@ export async function generateMetadata({ params: { slug } }: PostProps): Promise
 export default async function Post({ params: { slug } }: PostProps) {
   const post = await getPostBySlug(slug)
 
-  if (!post.title) {
+  if (!post) {
     return notFound()
   }
-
+  const outline = parseOutline(post.content)
   const breadcrumb = [
     { path: '/', label: 'Trang chủ' },
     {
@@ -74,7 +85,7 @@ export default async function Post({ params: { slug } }: PostProps) {
   return (
     <>
       <Breadcrumb items={breadcrumb} />
-      <div className='blog-container flex flex-col lg:flex-row gap-12 mt-8'>
+      <div className='blog-container flex flex-col lg:flex-row gap-12 mt-8 '>
         <section className='w-full lg:w-[65%]'>
           <article className='blog-card p-8'>
             <div>
@@ -90,7 +101,11 @@ export default async function Post({ params: { slug } }: PostProps) {
                   </Link>
                 ))}
               </div>
-              <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-50'>{post.title}</h1>
+              <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-50 pb-6'>{post.title}</h1>
+              <div className='border border-gray-600 dark:border-gray-300 p-3 rounded-lg'>
+                <h3 className='text-2xl text-gray-800 dark:text-gray-50 font-medium pb-4'>Nội dung bài viết</h3>
+                <TableOfContents outline={outline} />
+              </div>
               <div className='text-justify'>
                 <PortableText value={post.content} components={RichTextDocument} />
               </div>
@@ -131,6 +146,7 @@ export default async function Post({ params: { slug } }: PostProps) {
           </div>
         </section>
         <div className='blog-sidebar flex-1'>
+          {/* @ts-expect-error Server Component */}
           <Sidebar />
         </div>
       </div>
@@ -152,7 +168,5 @@ export async function generateStaticParams() {
       }
 `
   const slugs: Slug[] = await client.fetch(query)
-  return slugs.map((slug) => ({
-    slug: slug.slug
-  }))
+  return slugs
 }

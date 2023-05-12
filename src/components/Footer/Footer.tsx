@@ -1,24 +1,13 @@
-'use client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { PostSidebarItem } from '../Sidebar/Sidebar'
 import { Post, Tag } from '@/types'
 import { getTags } from '@/lib/tag'
 import { getPosts } from '@/lib/post'
 
-export default function Footer() {
-  const [tags, setTags] = useState<Tag[]>([])
-  const [posts, setPosts] = useState<Post[]>([])
-
-  const fetchTagsAndPosts = async () => {
-    const [tags, posts] = await Promise.all([getTags(), getPosts()])
-    setPosts(posts.slice(0, 3))
-    setTags(tags)
-  }
-  useEffect(() => {
-    fetchTagsAndPosts()
-  }, [])
+export default async function Footer() {
+  const [tags, posts] = await Promise.all([getTags(), getPosts()])
 
   return (
     <footer className='bg-white dark:bg-dark-theme-content pt-28 pb-12 mt-14'>
@@ -48,7 +37,7 @@ export default function Footer() {
           </ul>
           <span className='text-xl dark:text-gray-300 font-semibold my-8 block'>Frameworks & CMS</span>
           <div className='flex items-center gap-4'>
-            <Link href='https://nextjs.org/'>
+            <Link rel='nofollow' href='https://nextjs.org/'>
               <svg
                 aria-label='Next.js logotype'
                 className='dark:fill-white'
@@ -92,7 +81,7 @@ export default function Footer() {
                 ></path>
               </svg>
             </Link>
-            <Link href='https://tailwindcss.com/'>
+            <Link rel='nofollow' href='https://tailwindcss.com/'>
               <svg viewBox='0 0 248 31' className='text-slate-900 dark:text-white w-auto h-5'>
                 <path
                   fillRule='evenodd'
@@ -108,7 +97,7 @@ export default function Footer() {
                 ></path>
               </svg>
             </Link>
-            <Link href='https://www.sanity.io/'>
+            <Link rel='nofollow' href='https://www.sanity.io/'>
               <svg
                 viewBox='0 0 105 22'
                 className='fill-[#f03f2e]'
@@ -167,7 +156,7 @@ export default function Footer() {
         <section className=''>
           <span className='text-xl dark:text-gray-300 font-semibold mb-8 block'>Bài viết mới nhất</span>
           <ul>
-            {posts?.map((post) => (
+            {posts?.slice(0, 3)?.map((post) => (
               <li key={post._id} className='mb-4'>
                 <PostSidebarItem post={post} />
               </li>

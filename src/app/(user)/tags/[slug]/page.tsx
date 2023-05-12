@@ -38,6 +38,17 @@ export async function generateMetadata({ params: { slug } }: DetailTagProps): Pr
       url: tag?.url || `${process.env.HOST}/tags/${tag.slug}`,
       publishedTime: tag._createdAt
     },
+    twitter: {
+      card: 'summary',
+      title: tag.title,
+      description: tag.description,
+      images: [tag.thumbnail]
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 1
+    },
     robots: {
       index: true,
       follow: true,
@@ -121,6 +132,7 @@ export default async function DetailTag({ params: { slug } }: DetailTagProps) {
           </div>
         </div>
         <div className='blog-sidebar flex-1'>
+          {/* @ts-expect-error Server Component */}
           <Sidebar />
         </div>
       </div>
@@ -142,7 +154,5 @@ export async function generateStaticParams() {
       }
   `
   const slugs: Slug[] = await client.fetch(query)
-  return slugs.map((slug) => ({
-    slug: slug.slug
-  }))
+  return slugs
 }
