@@ -4,9 +4,10 @@ import { Post } from "@/types";
 
 
 export interface Pagination {
-  page?: number
-  limit?: number
+  page: number
+  limit: number
 }
+
 
 interface GetPostReturn {
   posts: Post[]
@@ -17,14 +18,14 @@ interface GetPostReturn {
   }
 }
 
-export async function getPosts({ page = 1, limit = 10 }: Pagination): Promise<GetPostReturn> {
-  const countQuery = `count(*[_type == "post"])`
+export async function getPosts({ page = 1, limit = 10 }: Pagination, title?: string): Promise<GetPostReturn> {
+  const countQuery = `count(*[_type == "post"] [title match "${title ? title : ''}*"])`
   const countResult = await client.fetch<number>(countQuery)
   const pageCount = Math.ceil(countResult / limit)
   const offset = (page - 1) * limit
 
   const query = groq`
-  *[_type == "post"] | order(_createdAt desc) [${offset}...${offset + limit}] {
+  *[_type == "post"] | order(_createdAt desc) [title match "${title ? title : ''}*"]  [${offset}...${offset + limit}] {
     ...,
     "slug": slug.current,
     author->,

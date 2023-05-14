@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const tags = await getTags()
+  const { tags } = await getTags({ page: 1, limit: 10 })
   return {
     title: 'Tags',
     description: 'Chia sẻ thủ thuật công nghệ máy tính, điện thoại, internet, .. và nhiều thể loại khác.',
@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const revalidate = 60
 
 export default async function Tags() {
-  const tags = await getTags()
+  const { tags } = await getTags({ page: 1, limit: 10 })
   const breadcrumb = [
     { path: '/', label: 'Trang chủ' },
     {

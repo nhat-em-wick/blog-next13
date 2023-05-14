@@ -7,7 +7,7 @@ import { getTags } from '@/lib/tag'
 import { Post } from '@/types'
 
 export default async function Sidebar() {
-  const [tags, { posts }] = await Promise.all([getTags(), getPosts({ page: 1, limit: 10 })])
+  const [{ tags }, { posts }] = await Promise.all([getTags({ page: 1, limit: 10 }), getPosts({ page: 1, limit: 10 })])
 
   return (
     <div className='blog-card p-8 h-max sticky top-[100px]'>
