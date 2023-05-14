@@ -18,22 +18,22 @@ export const RichTextDocument = {
   },
   block: {
     h1: ({ children, node: { _key } }: any) => (
-      <h1 id={_key} className='text-3xl py-6 font-bold text-gray-800 dark:text-gray-50'>
+      <h1 id={_key} className='text-3xl py-6 font-bold text-gray-800 dark:text-gray-50 scroll-mt-[70px]'>
         {children}
       </h1>
     ),
     h2: ({ children, node: { _key } }: any) => (
-      <h2 id={_key} className='text-2xl py-6 font-bold text-gray-800 dark:text-gray-50'>
+      <h2 id={_key} className='text-2xl py-6 font-bold text-gray-800 dark:text-gray-50 scroll-mt-[70px]'>
         {children}
       </h2>
     ),
     h3: ({ children, node: { _key } }: any) => (
-      <h3 id={_key} className='text-xl py-6 font-bold text-gray-800 dark:text-gray-50'>
+      <h3 id={_key} className='text-xl py-6 font-bold text-gray-800 dark:text-gray-50 scroll-mt-[70px]'>
         {children}
       </h3>
     ),
     h4: ({ children, node: { _key } }: any) => (
-      <h4 id={_key} className='text-lg py-6 font-bold text-gray-800 dark:text-gray-50'>
+      <h4 id={_key} className='text-lg py-6 font-bold text-gray-800 dark:text-gray-50 scroll-mt-[70px]'>
         {children}
       </h4>
     ),
