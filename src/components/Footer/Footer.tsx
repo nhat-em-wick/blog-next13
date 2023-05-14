@@ -7,7 +7,7 @@ import { getTags } from '@/lib/tag'
 import { getPosts } from '@/lib/post'
 
 export default async function Footer() {
-  const [tags, posts] = await Promise.all([getTags(), getPosts()])
+  const [tags, { posts }] = await Promise.all([getTags(), getPosts({ page: 1, limit: 10 })])
 
   return (
     <footer className='bg-white dark:bg-dark-theme-content pt-28 pb-12 mt-14'>
