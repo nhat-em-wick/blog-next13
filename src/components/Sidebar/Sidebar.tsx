@@ -1,7 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { CiClock2 } from 'react-icons/ci'
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa'
+
+import Image from '../Image'
+
 import { getPosts } from '@/lib/post'
 import { getTags } from '@/lib/tag'
 import { Post } from '@/types'

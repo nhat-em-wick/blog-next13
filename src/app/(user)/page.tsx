@@ -1,4 +1,3 @@
-import Pagination from '@/components/Pagination'
 import PostItem from '@/components/PostItem/PostItem'
 import PostSlide from '@/components/PostSlide/PostSlide'
 import Sidebar from '@/components/Sidebar/Sidebar'
@@ -7,7 +6,7 @@ import { getPosts } from '@/lib/post'
 export const revalidate = 60
 
 export default async function Home() {
-  const { posts, pagination } = await getPosts({ page: 1, limit: 10 })
+  const { posts } = await getPosts({ page: 1, limit: 10 })
 
   return (
     <div className=''>
