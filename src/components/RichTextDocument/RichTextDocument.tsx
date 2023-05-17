@@ -94,7 +94,7 @@ const getChildrenText = (props: any) =>
 export const TableOfContents = (props: any) => (
   <ol>
     {props.outline.map((heading: any, index: any) => (
-      <li key={index} className='line-clamp-1'>
+      <li key={index} className='line-clamp-1 my-[6px]'>
         <a
           href={'#' + heading._key}
           className='block w-fit text-gray-600 py-[2px] dark:text-gray-200  relative after:absolute after:w-0 after:h-[1px] after:left-0 after:bottom-0 hover:after:w-full after:bg-primary after:transition-all after:duration-300 after:ease-in-out'
