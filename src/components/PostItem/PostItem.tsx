@@ -1,8 +1,8 @@
 import { Post } from '@/types'
-import Image from 'next/image'
 import Link from 'next/link'
 import { BiCalendar } from 'react-icons/bi'
 import { CiClock2 } from 'react-icons/ci'
+import Image from '../Image'
 
 interface PostItemProps {
   post: Post

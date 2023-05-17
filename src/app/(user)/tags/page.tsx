@@ -1,8 +1,9 @@
+import { Metadata } from 'next'
+import Link from 'next/link'
+
+import Image from '@/components/Image'
 import Breadcrumb from '@/components/Breadcrumb'
 import { getTags } from '@/lib/tag'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { tags } = await getTags({ page: 1, limit: 10 })
@@ -57,12 +58,7 @@ export default async function Tags() {
               <div key={tag._id} className='blog-card p-5'>
                 <div className='mb-4'>
                   <Link href={`/tags/${tag.slug}`} className='relative block aspect-[5/4] overflow-hidden rounded-lg'>
-                    <Image
-                      src={tag.thumbnail || 'https://placehold.co/600x400/png'}
-                      fill
-                      className='w-full h-full object-cover'
-                      alt={tag.title}
-                    />
+                    <Image src={tag.thumbnail} fill className='w-full h-full object-cover' alt={tag.title} />
                   </Link>
                 </div>
                 <div>

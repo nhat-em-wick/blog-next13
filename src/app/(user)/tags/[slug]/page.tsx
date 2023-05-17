@@ -1,14 +1,16 @@
 import { Suspense } from 'react'
+import { Metadata } from 'next'
+import { groq } from 'next-sanity'
+
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb'
 import Pagination from '@/components/Pagination'
 import PostItem from '@/components/PostItem'
 import Sidebar from '@/components/Sidebar'
+import Image from '@/components/Image'
+
 import { getPostsByTag } from '@/lib/post'
 import { client } from '@/lib/sanity.client'
 import { getTagBySlug } from '@/lib/tag'
-import { Metadata } from 'next'
-import { groq } from 'next-sanity'
-import Image from 'next/image'
 
 export const runtime = 'edge'
 interface DetailTagProps {
@@ -87,12 +89,7 @@ export default async function DetailTag({ params: { slug }, searchParams }: Deta
         <div className='blog-container'>
           <div className='blog-card p-5 relative'>
             <div className='relative aspect-square sm:aspect-[2/1] lg:aspect-[4/1] overflow-hidden rounded-lg'>
-              <Image
-                alt={tag.title}
-                className='object-cover w-full h-full'
-                fill
-                src={tag?.thumbnail || 'https://placehold.co/600x400.png'}
-              />
+              <Image alt={tag.title} fill src={tag?.thumbnail} />
             </div>
             <div
               className='absolute w-[80%] lg:w-[70%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 

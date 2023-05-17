@@ -1,14 +1,16 @@
 'use client'
-import Image from 'next/image'
+import { useRef } from 'react'
 import Link from 'next/link'
+import { v4 as uuid } from 'uuid'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { type Swiper as SwiperRef, Autoplay } from 'swiper'
+
 import { BiCalendar } from 'react-icons/bi'
 import { CiClock2 } from 'react-icons/ci'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { useRef } from 'react'
+
 import { Post } from '@/types'
-import { v4 as uuid } from 'uuid'
+import Image from '../Image'
 
 interface PostSlideProps {
   posts: Post[]
