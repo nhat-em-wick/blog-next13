@@ -103,7 +103,7 @@ export default async function Post({ params: { slug } }: PostProps) {
               </div>
               <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-50 pb-6'>{post.title}</h1>
               <div className='border border-gray-600 dark:border-gray-300 p-3 rounded-lg'>
-                <h3 className='text-2xl text-gray-800 dark:text-gray-50 font-medium pb-4'>Nội dung bài viết</h3>
+                <h3 className='text-2xl text-gray-800 dark:text-gray-50 font-medium pb-2'>Nội dung bài viết</h3>
                 <TableOfContents outline={outline} />
               </div>
               <div className='text-justify'>

@@ -22,10 +22,10 @@ export default function PostSlide({ posts }: PostSlideProps) {
       <div>
         <Swiper
           modules={[Autoplay]}
-          //   autoplay={{
-          //     delay: 5000,
-          //     disableOnInteraction: false
-          //   }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false
+          }}
           spaceBetween={50}
           slidesPerView={1}
           loop={true}
