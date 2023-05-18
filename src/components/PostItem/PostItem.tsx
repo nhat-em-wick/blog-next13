@@ -38,7 +38,7 @@ export default function PostItem({ post }: PostItemProps) {
           </Link>
         </h3>
         <p className='mt-3 text-md text-gray-700 line-clamp-3 leading-relaxed dark:text-gray-300'>{post.description}</p>
-        <div className='mt-4 flex items-center gap-5 text-gray-400 dark:text-gray-500'>
+        <div className='mt-4 flex items-center gap-5 text-gray-600 dark:text-gray-300'>
           <span className='flex items-center'>
             <BiCalendar />{' '}
             <span className='ml-1 text-sm'>

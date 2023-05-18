@@ -89,7 +89,7 @@ export const PostSidebarItem = ({ post }: { post: Post }) => {
             {post?.title}
           </Link>
         </h3>
-        <div className='mt-4 gap-5 text-gray-400 dark:text-gray-500'>
+        <div className='mt-4 gap-5 text-gray-600 dark:text-gray-300'>
           <span className='flex items-center'>
             <CiClock2 />
             <span className='ml-1 text-sm dark'>{post.timeRead} phút đọc</span>

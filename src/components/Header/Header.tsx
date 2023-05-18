@@ -77,9 +77,9 @@ export default function Header() {
               </ul>
             </nav>
             <div
-              onClick={() => setIsActiveMenu(true)}
+              onClick={() => setIsActiveMenu((prev) => !prev)}
               className={classNames('blog-menu--toggle w-[32px] h-[24px] cursor-pointer relative lg:hidden', {
-                'pointer-events-none': isActiveMenu
+                'pointer-events-none touch-none': isActiveMenu
               })}
             >
               <span
@@ -99,12 +99,12 @@ export default function Header() {
               ></span>
             </div>
             <nav
-              ref={menuMobileRef}
-              className={`absolute blog-card w-[200px] rounded-lg  right-0 mt-3 py-5 px-4 transition-all duration-500 ease-in-out ${
+              className={`absolute blog-card w-[200px] rounded-lg right-0 mt-3 transition-all duration-500 ease-in-out ${
                 isActiveMenu ? 'top-[100%] opacity-100 visible' : 'top-[130%] opacity-0 invisible'
               }`}
             >
-              <ul>
+              <div className='absolute w-[70px] h-[65px] -top-[75px] right-0 bg-transparent'></div>
+              <ul ref={menuMobileRef} className='py-5 px-4'>
                 <li className='flex items-center justify-center gap-4 dark:text-gray-50 mb-2'>
                   <span className='text-lg cursor-pointer hover:text-primary' onClick={() => setOpenSearch(true)}>
                     <HiOutlineSearch />
