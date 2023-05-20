@@ -20,6 +20,10 @@ export default async function sitemap() {
       url: baseUrl,
       lastModified: new Date(),
     },
+    {
+      url: `${baseUrl}/tags`,
+      lastModified: new Date(),
+    },
     ...postsSitemap,
     ...tagsSitemap
   ];
