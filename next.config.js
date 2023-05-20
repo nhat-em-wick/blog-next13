@@ -5,6 +5,14 @@ const nextConfig = {
   },
   images: {
     domains: ['images.unsplash.com', 'cdn.sanity.io', 'placehold.co']
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap'
+      }
+    ]
   }
 }
 
