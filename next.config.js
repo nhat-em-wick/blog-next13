@@ -11,6 +11,14 @@ const nextConfig = {
       {
         source: '/sitemap.xml',
         destination: '/api/sitemap'
+      },
+      {
+        source: '/articles-sitemap.xml',
+        destination: '/api/articles-sitemap'
+      },
+      {
+        source: '/tags-sitemap.xml',
+        destination: '/api/tags-sitemap'
       }
     ]
   }
