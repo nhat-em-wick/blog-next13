@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true
   },
   images: {
-    domains: ['images.unsplash.com', 'cdn.sanity.io', 'placehold.co']
+    domains: ['images.unsplash.com', 'cdn.sanity.io', 'placehold.co', 'res.cloudinary.com']
   },
   async rewrites() {
     return [
