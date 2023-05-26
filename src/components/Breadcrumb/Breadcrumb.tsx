@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
     <div id='breadcrumb' className='blog-container mb-6'>
-      <div className='blog-card py-4 px-8'>
+      <div className='py-4 px-8'>
         <div>
           {items.map((item, index) => {
             const isLastItem = index === items.length - 1
